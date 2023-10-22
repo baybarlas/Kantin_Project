@@ -1,0 +1,48 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+
+<div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 mx-auto">
+    <div class="bg-light rounded p-4 p-sm-5 ">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <h3>İşletme Girişi</h3>
+        </div>
+        <form asp-action="Login" asp-controller="Owner" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-group mb-3">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control">
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-4">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-check">
+                <label asp-for="RememberMe" class="form-label">
+                    <input class="form-check-input" asp-for="RememberMe" />
+                    Beni Hatırla
+                </label>
+            </div>
+            
+
+            <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Giriş Yap</button>
+        </form>
+
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

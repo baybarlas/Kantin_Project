@@ -1,0 +1,33 @@
+﻿@model List<SaleDetailViewModel>
+@{
+    ViewData["Title"] = "DetailOwner";
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <table class="table table-striped mt-5">
+            <thead>
+                <tr> 
+                    <th>Veli</th>
+                    <th>Ürün</th>
+                    <th>Adet</th>
+                    <th>Toplam</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var saleDetail in Model)
+                {
+                    <tr>
+                        <td>@ViewBag.User.FirstName @ViewBag.User.LastName</td>
+                        <td>@saleDetail.Product.Name</td>
+                        <td>@saleDetail.Quantity</td>
+                        <td>@(saleDetail.Quantity * saleDetail.Product.UnitPrice)</td>
+                    </tr>
+                }
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+

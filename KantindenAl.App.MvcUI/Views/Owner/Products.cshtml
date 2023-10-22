@@ -1,0 +1,30 @@
+﻿@model List<ProductViewModel>
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mt-3">
+                <input type="hidden" name="Id" value="@item.Id">
+                <div class="card-header text-center">
+                    <h5 class="card-title">@item.Name</h5>
+                </div>
+                <a href="/Movie/Details/@item.Id">
+                    <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name" title="@item.Name" height="250">
+                </a>
+                <div class="card-body text-center">
+                    <span class="card-text">@string.Format("{0:C2}", @item.UnitPrice)</span>
+                </div>
+                <div class="card-footer text-center">
+                    <a class="btn btn-secondary" asp-action="UpdateProduct" asp-controller="Owner" asp-route-id="@item.Id">
+                        Ürünü Güncelle
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

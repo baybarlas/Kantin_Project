@@ -1,0 +1,101 @@
+﻿@model List<SaleViewModel>
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+<div class="row">
+    <div class="col-md-4">
+        <nav class="list-group list-group-flush">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fa fa-shopping-bag mr-1 text-muted">
+                    </i>
+                    <div class="d-inline-block font-weight-medium ">
+                        <a class="list-group-item" asp-action="Order" asp-controller="Parent">Siparişlerim</a>
+                    </div>
+                </div>
+                <span class="badge badge-secondary"></span>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fa fa-user text-muted"></i>
+                    <div class="d-inline-block font-weight-medium ">
+                        <a class="list-group-item" asp-action="Account" asp-controller="Parent">&nbsp; Hesabım</a>
+                    </div>
+                </div>
+                <span class="badge badge-secondary"></span>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fa fa-user text-muted"></i>
+                    <div class="d-inline-block font-weight-medium ">
+                        <a class="list-group-item" asp-action="Student" asp-controller="Parent">&nbsp; Kayıtlı Öğrenciler</a>
+                    </div>
+                </div>
+                <span class="badge badge-secondary"></span>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fa fa-tag mr-1 text-muted"></i>
+                    <div class="d-inline-block font-weight-medium ">
+                        <a class="list-group-item" asp-action="Wallet" asp-controller="Parent">Cüzdanım</a>
+                    </div>
+                </div>
+                <span class="badge badge-secondary"></span>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fa fa-user text-muted"></i>
+                    <div class="d-inline-block font-weight-medium ">
+                        <a class="list-group-item" asp-action="Logout" asp-controller="Parent">&nbsp Çıkış Yap</a>
+                    </div>
+                </div>
+                <span class="badge badge-secondary"></span>
+            </div>
+        </nav>
+    </div>
+    <div class="col-md-8 ">
+        <div class="container ">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>Sipariş No</th>
+                            <th>Tarih</th>
+                            <th>İsim</th>
+                            <th>Tutar</th>
+                        </tr>
+                    </thead>
+
+                    @if (Model.Count > 0)
+                    {
+                        <tbody>
+                            @foreach (var sale in Model)
+                            {
+                                <tr>
+                                    <td><a class="navi-link" asp-action="Detail" asp-controller="Sale" asp-route-receiptNo="@sale.ReceiptNo">@sale.ReceiptNo</a></td>
+                                    <td>@sale.CreatedDate.ToShortDateString()</td>
+                                    @*<td><span class="badge badge-danger m-0">Canceled</span></td>*@
+                                    <td>@ViewBag.User.FirstName @ViewBag.User.LastName</td>
+                                    <td><span>@sale.TotalAmount</span></td>
+                                </tr>
+                            }
+                        </tbody>
+                    }
+                    else
+                    {
+                        <div class="Alert alert-secondary">
+                            Görüntülenecek sipariş bulunmamaktadır.
+                        </div> 
+                    }
+                </table>
+               
+                
+            </div>
+        </div>
+    </div>
+</div>

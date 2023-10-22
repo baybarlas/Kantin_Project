@@ -1,0 +1,24 @@
+﻿@model OwnerAndSchoolNameViewModel
+
+    <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+        <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+    </a>
+    <a href="#" class="sidebar-toggler flex-shrink-0">
+        <i class="fa fa-bars"></i>
+    </a>
+    <div class="navbar-nav align-items-center ms-auto"> 
+        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 mb-2">
+            <a asp-action="Wallet" asp-controller="Owner"><img src="~/images/icons/wallet1.png" height="27" /> <small><small> : @string.Format("{0:C2}",@Model.Balance)   </small></small>  </a>
+        </div>
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                <img class="rounded-circle me-lg-2" src="~/images/owner-logo.png" alt="" style="width: 40px; height: 40px;">
+                <span class="d-none d-lg-inline-flex">@Model.OwnerName</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                @*<a asp-action="Account" asp-controller="Owner" class="dropdown-item">Profil</a>*@
+                <a asp-action="AddProduct" asp-controller="Owner" class="dropdown-item">Ürün Ekle</a>
+                <a asp-action="Logout" asp-controller="Owner" class="dropdown-item">Çıkış Yap</a>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,63 @@
+﻿@model UserViewModel
+
+@{
+    ViewData["Title"] = "Account";
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+
+<div class="col-md-10 mx-auto mt-5">
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-4 ">
+                <a asp-action="Wallet" asp-controller="Owner"><img src="~/images/icons/wallet1.png" height="75" /></a>
+            </div>
+            <div class="col-md-8 ">
+                <h3 class="mt-4 mx-5">Cüzdan Bakiyesi : @string.Format("{0:C2}",@Model.Balance)</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <form class="form-inline my-3 col-md-6" asp-action="Withdraw" asp-controller="Owner" method="post">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" asp-for="Balance" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="submit">Bakiye Çek</button>
+            </div>
+            
+        </form>
+
+        @if (ViewBag.Activities.Count == 0)
+        {
+            <div class="alert alert-secondary" role="alert">
+                Görüntülenecek cüzdan aktivitesi bulunmamaktadır.
+            </div>
+        }
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>İsim Soyisim</th>
+                    <th>Tarih</th>
+                    <th>Miktar</th>
+                    <th>İşlem Türü</th>
+                    <th>Yeni Bakiye</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.Activities.Count > 0)
+                {
+                    @foreach (var item in ViewBag.Activities)
+                    {
+                        <tr>
+                            <td>@Model.FirstName @Model.LastName</td>
+                            <td>@item.Date.ToShortDateString()</td>
+                            <td>@item.TotalAmount</td>
+                            <td>@item.Type</td>
+                            <td>@item.NewBalance</td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

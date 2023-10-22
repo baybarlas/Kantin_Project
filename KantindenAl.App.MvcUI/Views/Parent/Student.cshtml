@@ -1,0 +1,125 @@
+﻿@model StudentViewModel
+
+@{
+    ViewData["Title"] = "Account";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+<div class="row">
+    <div class="col-md-4">
+        <nav class="list-group list-group-flush">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fa fa-shopping-bag mr-1 text-muted">
+                    </i>
+                    <div class="d-inline-block font-weight-medium ">
+                        <a class="list-group-item" asp-action="Order" asp-controller="Parent">Siparişlerim</a>
+                    </div>
+                </div>
+                <span class="badge badge-secondary"></span>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fa fa-user text-muted"></i>
+                    <div class="d-inline-block font-weight-medium ">
+                        <a class="list-group-item" asp-action="Account" asp-controller="Parent">&nbsp; Hesabım</a>
+                    </div>
+                </div>
+                <span class="badge badge-secondary"></span>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fa fa-user text-muted"></i>
+                    <div class="d-inline-block font-weight-medium ">
+                        <a class="list-group-item" asp-action="Student" asp-controller="Parent">&nbsp; Kayıtlı Öğrenciler</a>
+                    </div>
+                </div>
+                <span class="badge badge-secondary"></span>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fa fa-tag mr-1 text-muted"></i>
+                    <div class="d-inline-block font-weight-medium ">
+                        <a class="list-group-item" asp-action="Wallet" asp-controller="Parent">Cüzdanım</a>
+                    </div>
+                </div>
+                <span class="badge badge-secondary"></span>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fa fa-user text-muted"></i>
+                    <div class="d-inline-block font-weight-medium ">
+                        <a class="list-group-item" asp-action="Logout" asp-controller="Parent">&nbsp Çıkış Yap</a>
+                    </div>
+                </div>
+                <span class="badge badge-secondary"></span>
+            </div>
+        </nav>
+    </div>
+    <div class="col-md-8 ">
+        <div class="container ">
+            <div class="form-group">
+                <a class="btn btn-secondary" asp-action="RegisterStudent" asp-controller="Parent">+ Yeni Öğrenci</a>
+            </div>
+            <form asp-action="Student" asp-controller="Parent" method="post">
+
+                @if (ViewBag.Students.Count > 0)
+                {
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="selectedStudentId">
+                        <option selected disabled>Öğrenci Seçiniz</option>
+                        @foreach (var item in ViewBag.Students)
+                        {
+                            <option value="@item.Id">@item.FirstName @item.LastName</option>
+                        }
+                    </select>
+                }
+                else
+                {
+                    <div class="p-3 text-secondary-emphasis bg-secondary-subtle border border-secondary-subtle rounded-3 mb-3">
+                        Kayıtlı Öğrenci Bulunmamaktadır!
+                    </div>
+                }
+
+                <div class="form-group">
+                    <input type="submit" value="Öğrenci Getir" class="btn btn-primary mt-3" />
+                </div>
+            </form>
+            @if(Model != null)
+            {
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" readonly/>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" readonly/>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SchoolName" class="control-label"></label>
+                    <input asp-for="SchoolName" class="form-control" readonly/>
+                    <span asp-validation-for="SchoolName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StdNo" class="control-label"></label>
+                    <input asp-for="StdNo" class="form-control" />
+                    <span asp-validation-for="StdNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ClassName" class="control-label"></label>
+                    <input asp-for="ClassName" class="form-control" />
+                    <span asp-validation-for="ClassName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Öğrenci Getir" class="btn btn-primary" />
+                </div>
+                
+            }
+
+        </div>
+    </div>
+</div>

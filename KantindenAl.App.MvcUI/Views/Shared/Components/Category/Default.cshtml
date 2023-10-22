@@ -1,0 +1,23 @@
+﻿@model List<CategoryViewModel>
+
+<div class="flex-w flex-sb-m p-b-52">
+	<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+		<a class="btn text-decoration-none stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " asp-action="List" asp-controller="Product" asp-route-id="0">
+			Tüm Ürünler
+		</a>
+		@foreach (var item in Model)
+		{
+			<a class=" btn text-decoration-none stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" asp-action="List" asp-controller="Product" asp-route-id="@item.Id">
+				@item.Name
+			</a>
+		}		
+	</div>
+	
+	<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer trans-04 m-tb-4 ">
+		<form class="form-inline" asp-action="List" asp-controller="Product" role="search">
+			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+			<button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Ara</button>
+		</form>
+	</div>
+</div>
+

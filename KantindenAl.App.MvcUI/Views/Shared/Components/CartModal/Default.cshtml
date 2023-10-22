@@ -1,0 +1,69 @@
+﻿@model List<CartLineViewModel>
+
+@if(Model != null)
+{
+    <div class="wrap-header-cart js-panel-cart">
+        <div class="s-full js-hide-cart"></div>
+        <div class="header-cart flex-col-l p-l-65 p-r-25">
+            <div class="header-cart-title flex-w flex-sb-m p-b-8">
+                <span class="mtext-103 cl2">
+                    Sepet
+                </span>
+
+                <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+                    <i class="zmdi zmdi-close"></i>
+                </div>
+            </div>
+            <div class="header-cart-content flex-w js-pscroll">
+                @if (Model.Count > 0)
+                {
+                    @foreach (var cartLine in Model)
+                    {
+
+                        <ul class="header-cart-wrapitem w-full">
+                            <li class="header-cart-item flex-w flex-t m-b-12">
+
+                                <div class="header-cart-item-img">
+                                    <img src="@cartLine.Product.ImageUrl" alt="IMG">
+                                </div>
+
+                                <div class="header-cart-item-txt">
+                                    <a asp-action="Detail" asp-controller="Product" asp-route-id="@cartLine.Product.Id" class="header-cart-item-name m-b-5 hov-cl1 trans-04">
+                                        @cartLine.Product.Name
+                                    </a>
+
+                                    <span class="header-cart-item-info">
+                                        @cartLine.Quantity x @string.Format("{0:C2}",cartLine.Product.UnitPrice)
+                                    </span>
+                                    <span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    }
+
+                    <div class="w-full">
+                        <div class="header-cart-total w-full p-tb-40">
+                            Toplam : @string.Format("{0:C2}",ViewBag.Cart.TotalAmount)
+                        </div>
+
+                        <div class="header-cart-buttons flex-w w-full">
+                            <a asp-action="Index" asp-controller="Cart" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+                                Sepete Git
+                            </a>
+
+                            <a asp-action="ClearCart" asp-controller="Cart" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+                                Sepeti Temizle
+                            </a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="header-cart-content flex-w js-pscroll">
+                        Sepette Ürün Bulunmamaktadır.
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

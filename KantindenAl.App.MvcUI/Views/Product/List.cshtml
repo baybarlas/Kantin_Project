@@ -1,0 +1,44 @@
+﻿@model List<ProductViewModel>
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+	<div class="bg0 m-t-23 p-b-140">
+		<div class="container">
+			@await Component.InvokeAsync("Category")
+
+			<div class="row isotope-grid">
+				<form>
+			@foreach (var item in Model)
+			{
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item">
+					<!-- Block2 -->
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="@item.ImageUrl" alt="@item.Name Resmi" height = "220">
+							
+							<a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id" asp-route-quantity="1" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04" >
+								Sepete Ekle
+							</a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									@item.Name
+								</a>
+
+								<span class="stext-105 cl3">
+									@string.Format("{0:C2}", @item.UnitPrice)
+								</span>
+																
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,508 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/themes/cozastore-master/images/icons/favicon.png" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/themes/cozastore-master/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/themes/cozastore-master/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/themes/cozastore-master/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/themes/cozastore-master/fonts/linearicons-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/themes/cozastore-master/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/themes/cozastore-master/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/themes/cozastore-master/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/themes/cozastore-master/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/themes/cozastore-master/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/themes/cozastore-master/vendor/slick/slick.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/themes/cozastore-master/vendor/MagnificPopup/magnific-popup.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/themes/cozastore-master/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/themes/cozastore-master/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/themes/cozastore-master/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body class="animsition">
+
+    <!-- Header -->
+    <header>
+        <!-- Header desktop -->
+        <div class="container-menu-desktop">
+            <!-- Topbar -->
+            <div class="top-bar">
+                <div class="content-topbar flex-sb-m h-full container">
+                    <div class="left-top-bar">
+                    </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="right-top-bar flex-w h-full">
+                            <a asp-controller="Parent" asp-action="Account" class="flex-c-m trans-04 p-lr-25">
+                                Hoşgeldin @User.Identity.Name
+                            </a>
+
+                            <a asp-controller="Parent" asp-action="Logout" class="flex-c-m trans-04 p-lr-25">
+                                Çıkış Yap
+                            </a>
+
+                            <a asp-controller="Home" asp-action="FAQ" class="flex-c-m trans-04 p-lr-25">
+                                S.S.S.
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="right-top-bar flex-w h-full">
+                            <a asp-controller="Parent" asp-action="Register" class="flex-c-m trans-04 p-lr-25">
+                                Veli Kayıt
+                            </a>
+
+                            <a asp-controller="Parent" asp-action="Login" class="flex-c-m trans-04 p-lr-25">
+                                Veli Girişi
+                            </a>
+
+                            <a asp-controller="Home" asp-action="FAQ" class="flex-c-m trans-04 p-lr-25">
+                                S.S.S.
+                            </a>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="wrap-menu-desktop">
+                <nav class="limiter-menu-desktop container">
+
+                    <!-- Logo desktop -->
+                    <a asp-action="Index" asp-controller="Home" class="logo">
+                        <img src="/images/logo.png" alt="Kantinden Al Logo">
+                    </a>
+
+                    <!-- Menu desktop -->
+                    <div class="menu-desktop">
+                        <ul class="main-menu">
+                            @if (User.IsInRole("Parent"))
+                            {
+                                <li class="active-menu">
+                                    <a asp-action="Index" asp-controller="Home">Ana Sayfa</a>
+                                </li>
+                                <li>
+
+                                </li>
+                                <li>
+
+                                </li>
+                                <li class="active-menu">
+                                    <a asp-action="List" asp-controller="Product">Ürünler</a>
+                                </li>
+                                <li>
+
+                                </li>
+                                <li>
+
+                                </li>
+                                <li>
+                                    <a asp-controller="Home" asp-action="About">Hakkımızda</a>
+                                </li>
+                                <li>
+
+                                </li>
+                                <li>
+
+                                </li>
+                                <li>
+                                    <a asp-controller="Home" asp-action="Contact">İletişim</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="active-menu">
+                                    <a asp-action="Index" asp-controller="Home">Ana Sayfa</a>
+                                </li>
+                                <li>
+
+                                </li>
+                                <li>
+
+                                </li>
+                                <li>
+                                    <a asp-controller="Home" asp-action="About">Hakkımızda</a>
+                                </li>
+                                <li>
+
+                                </li>
+                                <li>
+
+                                </li>
+                                <li>
+                                    <a asp-controller="Home" asp-action="Contact">İletişim</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+
+                    <!-- Icon header -->
+                    @if (User.IsInRole("Parent"))
+                    {
+                      @await Component.InvokeAsync("Balance")
+                    }
+                </nav>
+            </div>
+        </div>
+
+        <!-- Header Mobile -->
+        <div class="wrap-header-mobile">
+            <!-- Logo moblie -->
+            <div class="logo-mobile">
+                <a asp-controller="Home" asp-action="Index"><img src="/images/logo.png" alt="Kantinden Al Logo"></a>
+            </div>
+
+            <!-- Icon header -->
+            @if (User.IsInRole("Parent"))
+            {
+                @await Component.InvokeAsync("Balance")
+            }
+            <!-- Button show menu -->
+            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </div>
+        </div>
+
+
+        <!-- Menu Mobile -->
+        <div class="menu-mobile">
+            <ul class="topbar-mobile">
+                <li>
+                    <div class="right-top-bar flex-w h-full">
+                        @if (User.IsInRole("Parent"))
+                        {
+                            <a asp-controller="Parent" asp-action="Account" class="flex-c-m p-lr-10 trans-04">
+                                Hoşgeldin @User.Identity.Name
+                            </a>
+
+                            <a asp-controller="Parent" asp-action="Logout" class="flex-c-m p-lr-10 trans-04">
+                                Çıkış Yap
+                            </a>
+
+                            <a asp-controller="Home" asp-action="FAQ" class="flex-c-m p-lr-10 trans-04">
+                                S.S.S
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Parent" asp-action="Register" class="flex-c-m p-lr-10 trans-04">
+                                Veli Kayıt
+                            </a>
+
+                            <a asp-controller="Parent" asp-action="Login" class="flex-c-m p-lr-10 trans-04">
+                                Veli Girişi
+                            </a>
+
+                            <a asp-controller="Home" asp-action="FAQ" class="flex-c-m p-lr-10 trans-04">
+                                S.S.S
+                            </a>
+                        }
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="main-menu-m">
+                @if (User.IsInRole("Parent"))
+                {
+                    <li>
+                        <a asp-action="Index" asp-controller="Home">Ana Sayfa</a>
+                    </li>
+                    <li>
+                        <a asp-action="List" asp-controller="Product">Ürünler</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="About">Hakkımızda</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="Contact">İletişim</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a asp-action="Index" asp-controller="Home">Ana Sayfa</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="About">Hakkımızda</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="Contact">İletişim</a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <!-- Modal Search -->
+        <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+            <div class="container-search-header">
+                <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+                    <img src="~/themes/cozastore-master/images/icons/icon-close2.png" alt="CLOSE">
+                </button>
+
+                <form class="wrap-search-header flex-w p-l-15">
+                    <button class="flex-c-m trans-04">
+                        <i class="zmdi zmdi-search"></i>
+                    </button>
+                    <input class="plh3" type="text" name="search" placeholder="Arama Yap...">
+                </form>
+            </div>
+        </div>
+    </header>
+    <!-- Cart -->
+    @if (User.IsInRole("Parent"))
+    {
+        @await Component.InvokeAsync("CartModal")
+    }
+    
+
+
+    <!-- Banner -->
+    <div class="sec-banner bg0 p-t-80 p-b-50">
+        <div class="container">
+        </div>
+    </div>
+    <!-- Product -->
+    <section class="bg0 p-t-23 p-b-140">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg3 p-t-75 p-b-32">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9 col-lg-4 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        İşlemler
+                    </h4>
+
+                    <ul>
+                        <li class="p-b-10">
+                            <a asp-controller="Parent" asp-action="Login" class="stext-107 cl7 hov-cl1 trans-04">
+                                Veli Girişi
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a asp-controller="Store" asp-action="Login" class="stext-107 cl7 hov-cl1 trans-04">
+                                İşletme Girişi
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a asp-controller="Parent" asp-action="Register" class="stext-107 cl7 hov-cl1 trans-04">
+                                Veli Kayıt
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a asp-controller="Parent" asp-action="Login" class="stext-107 cl7 hov-cl1 trans-04">
+                                Veli Girişi
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-9 col-lg-4 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Genel
+                    </h4>
+
+                    <ul>
+                        <li class="p-b-10">
+                            <a asp-controller="Home" asp-action="About" class="stext-107 cl7 hov-cl1 trans-04">
+                                Hakkımızda
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a asp-controller="Home" asp-action="FAQ" class="stext-107 cl7 hov-cl1 trans-04">
+                                S.S.S.
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-9 col-lg-4 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Bize Ulaşın
+                    </h4>
+
+                    <p class="stext-107 cl7 size-201">
+                        Her türlü soru, sorun, görüş ve önerileriniz için bizimle iletişime geçebilirsiniz.
+                    </p>
+                    <p class="stext-107 cl7 size-201">
+                        <a href="mailto:furkaanbarlas@gmail.com">Mail</a>
+                    </p>
+
+                    <div class="p-t-27">
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <p class="stext-107 cl6 txt-center">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm Hakları Saklıdır. | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by MFE</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+            </p>
+        </div>
+        </div>
+    </footer>
+
+
+    <!-- Back to top -->
+    <div class="btn-back-to-top" id="myBtn">
+        <span class="symbol-btn-back-to-top">
+            <i class="zmdi zmdi-chevron-up"></i>
+        </span>
+    </div>
+
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/themes/cozastore-master/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/themes/cozastore-master/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/themes/cozastore-master/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/themes/cozastore-master/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/themes/cozastore-master/vendor/select2/select2.min.js"></script>
+    <script>
+        $(".js-select2").each(function () {
+            $(this).select2({
+                minimumResultsForSearch: 20,
+                dropdownParent: $(this).next('.dropDownSelect2')
+            });
+        })
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/themes/cozastore-master/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/themes/cozastore-master/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/themes/cozastore-master/vendor/slick/slick.min.js"></script>
+    <script src="~/themes/cozastore-master/js/slick-custom.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/themes/cozastore-master/vendor/parallax100/parallax100.js"></script>
+    <script>
+        $('.parallax100').parallax100();
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/themes/cozastore-master/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+    <script>
+        $('.gallery-lb').each(function () { // the containers for all your galleries
+            $(this).magnificPopup({
+                delegate: 'a', // the selector for gallery item
+                type: 'image',
+                gallery: {
+                    enabled: true
+                },
+                mainClass: 'mfp-fade'
+            });
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/themes/cozastore-master/vendor/isotope/isotope.pkgd.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!--===============================================================================================-->
+    <script src="~/themes/cozastore-master/vendor/sweetalert/sweetalert.min.js"></script>
+    <script>
+        $('.js-addwish-b2').on('click', function (e) {
+            e.preventDefault();
+        });
+
+        $('.js-addwish-b2').each(function () {
+            var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+            $(this).on('click', function () {
+                swal(nameProduct, "is added to wishlist !", "success");
+
+                $(this).addClass('js-addedwish-b2');
+                $(this).off('click');
+            });
+        });
+
+        $('.js-addwish-detail').each(function () {
+            var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+            $(this).on('click', function () {
+                swal(nameProduct, "is added to wishlist !", "success");
+
+                $(this).addClass('js-addedwish-detail');
+                $(this).off('click');
+            });
+        });
+
+        /*---------------------------------------------*/
+
+        $('.js-addcart-detail').each(function () {
+            var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+            $(this).on('click', function () {
+                swal(nameProduct, "is added to cart !", "success");
+            });
+        });
+
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/themes/cozastore-master/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script>
+        $('.js-pscroll').each(function () {
+            $(this).css('position', 'relative');
+            $(this).css('overflow', 'hidden');
+            var ps = new PerfectScrollbar(this, {
+                wheelSpeed: 1,
+                scrollingThreshold: 1000,
+                wheelPropagation: false,
+            });
+
+            $(window).on('resize', function () {
+                ps.update();
+            })
+        });
+    </script>
+    <script>
+         $('.js-show-cart').on('click',function(){
+            $('.js-panel-cart').addClass('show-header-cart');
+        });
+
+        $('.js-hide-cart').on('click',function(){
+            $('.js-panel-cart').removeClass('show-header-cart');
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/themes/cozastore-master/js/main.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿@model SaleViewModel
+@{
+    ViewData["Title"] = "ConfirmPayment";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="alert alert-secondary">
+            Ödeme işleminiz başarıyla tamamlanmıştır.
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fatura No</th>
+                    <th>İsim Soyisim</th>
+                    <th>Öğrenci</th>
+                    <th>Sınıf</th>
+                    <th>Toplam Tutar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.ReceiptNo</td>
+                    <td>@ViewBag.User.FirstName @ViewBag.User.LastName</td>
+                    <td>@ViewBag.Student.FirstName @ViewBag.Student.LastName</td>
+                    <td>@ViewBag.Student.ClassName</td>
+                    <td>@Model.TotalAmount</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

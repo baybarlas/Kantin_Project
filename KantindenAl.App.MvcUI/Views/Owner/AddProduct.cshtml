@@ -1,0 +1,64 @@
+﻿@model ProductViewModel
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+
+<div class="container">
+    <div class="row ">
+        <div class="col-sm-12 col-xl-6 mt-4 mx-auto">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4 text-center">Yeni Ürün Ekle</h6>
+                <form asp-action="AddProduct" asp-controller="Owner" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                    <div class="form-floating mb-3">
+                        <input class="form-control" placeholder="Örn. Kutu Kola" asp-for="Name">
+                        <label asp-for="Name">Ürün Başlığı</label>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating">
+                        <textarea asp-for="Description" class="form-control mb-3" style="height: 150px;" placeholder="Ürün Açıklaması"></textarea>
+                        <label asp-for="Description">Ürün Açıklaması (Opsiyonel) </label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input class="form-control" min="0" type="number" asp-for="Stock" placeholder="Adet">
+                        <label asp-for="Stock">Ürün Adeti</label>
+                        <span asp-validation-for="Stock" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input class="form-control" placeholder="Ürün Fiyatı" asp-for="UnitPrice">
+                        <label asp-for="UnitPrice">Ürün Fiyatı</label>
+                        <span asp-validation-for="UnitPrice" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <select class="form-select" asp-for="CategoryId" asp-items="ViewBag.Categories">
+                            <option selected disabled>Kategori Seçiniz</option>
+                        </select>
+                        <label asp-for="CategoryId">Kategori</label>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <label  name="formFile" class="form-label"></label>
+                        <input asp-for="ImageUrl" class="form-control" type="file" name="formFile">
+                    </div>
+                    
+                    <div class="form-floating mb-3">
+                    <button class="btn btn-primary w-100 m-2" type="submit">Ürünü Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

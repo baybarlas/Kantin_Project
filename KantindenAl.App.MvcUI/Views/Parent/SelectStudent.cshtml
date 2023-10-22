@@ -1,0 +1,45 @@
+﻿@model List<StudentViewModel>
+@{
+    ViewData["Title"] = "SelectStudent";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <div class="col-md-6 mx-auto">
+            <h4 class="tittle">Kullanıcı Giriş</h4>
+            <div class="login p-5 bg-light mx-auto mw-100">
+
+                @if (Model.Count > 0)
+                {
+                    <form asp-controller="Parent" asp-action="SelectStudent" method="post">
+                        <div class="form-group mt-3">
+                            <select class="form-select" name="selectedStudentId">
+                                <option selected disabled>Öğrenci Seçiniz</option>
+                                @foreach (var item in Model)
+                                {
+                                    <option value="@item.Id">@item.FirstName @item.LastName</option>
+                                }
+                            </select>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-100 btn btn-lg btn-secondary">Öğrenci Seç</button>
+                        </div>
+                    </form>
+                }
+                else
+                {
+                    <div class="p-3 text-secondary-emphasis bg-secondary-subtle border border-secondary-subtle rounded-3 mb-3">
+                        Kayıtlı Öğrenci Bulunmamaktadır!
+                    </div>
+                    <div>
+                        <a class="btn btn-secondary" asp-action="RegisterStudent" asp-controller="Parent">Öğrenci Ekle</a>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
